@@ -1,9 +1,8 @@
 class PrepareDelivery
   TRUCKS = { kamaz: 3000, gazel: 1000 }
 
-  def initialize(order, user)
+  def initialize(order)
     @order = order 
-    @user = user 
   end
 
   def perform(destination_address, delivery_date)
