@@ -1,9 +1,12 @@
 class Order
-  def id
-    'id'
+  attr_accessor :id, :products
+
+  def initialize(id, products = [])
+    @id = id
+    @products = products
   end
 
-  def products
-    [OpenStruct.new(weight: 20), OpenStruct.new(weight: 40)]
+  def add_product(product)
+    @products << product
   end
 end
