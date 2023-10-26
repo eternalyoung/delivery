@@ -1,13 +1,13 @@
 class Address
-  def city
-    "Ростов-на-Дону"
+  attr_accessor :city, :street, :house
+
+  def initialize(city, street, house)
+    @city = city
+    @street = street
+    @house = house
   end
 
-  def street
-    "ул. Маршала Конюхова"
-  end
-
-  def house
-    "д. 5"
+  def to_s
+    "#{@city}, ул. #{@street}, д. #{@house}"
   end
 end
