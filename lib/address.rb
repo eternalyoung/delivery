@@ -10,4 +10,8 @@ class Address
   def to_s
     "#{@city}, ул. #{@street}, д. #{@house}"
   end
+
+  def is_full?
+    !(city.empty? || street.empty? || house.empty?)
+  end
 end

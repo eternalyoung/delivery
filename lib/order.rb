@@ -9,4 +9,8 @@ class Order
   def add_product(product)
     @products << product
   end
+
+  def total_weight
+    @products.sum { |product| product.weight }
+  end
 end
