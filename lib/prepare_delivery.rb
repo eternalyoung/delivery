@@ -20,29 +20,3 @@ class PrepareDelivery
      result[:satus] = "error"
   end
 end
-
-class Order
-  def id
-    'id'
-  end
-
-  def products
-    [OpenStruct.new(weight: 20), OpenStruct.new(weight: 40)]
-  end
-end
-
-class Address
-  def city
-    "Ростов-на-Дону"
-  end
-
-  def street
-    "ул. Маршала Конюхова"
-  end
-
-  def house
-    "д. 5"
-  end
-end
-
-PrepareDelivery.new(Order.new, OpenStruct.new).perform(Address.new, Date.tomorrow)
