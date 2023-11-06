@@ -2,9 +2,9 @@ TRUCKS = { kamaz: 3000, gazel: 1000 }
 
 class PrepareDelivery
   class DeliveryError < StandardError; end
-  class Outdated < DeliveryError; end
-  class NoAddress < DeliveryError; end
-  class NoCar < DeliveryError; end
+  class OutdatedError < DeliveryError; end
+  class InvalidAddressError < DeliveryError; end
+  class NoCarError < DeliveryError; end
 
   def initialize(order)
     @order = order 
@@ -35,7 +35,7 @@ class PrepareDelivery
   private
 
   def validate_delivery_date!(delivery_date)
-    raise Outdated, "Дата доставки уже прошла" if delivery_date < DateTime.now
+    raise OutdatedError, "Дата доставки уже прошла" if delivery_date < DateTime.now
   end
 
   def validate_address!(destination_address)
@@ -44,7 +44,7 @@ class PrepareDelivery
 
   def find_truk(weight)
     truck = TRUCKS.keys.find { TRUCKS[_1] > weight }
-    raise NoCar, "Нет подходящей машины" unless truck
+    raise NoCarError, "Нет подходящей машины" unless truck
     truck
   end
 end
