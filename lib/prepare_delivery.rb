@@ -15,7 +15,7 @@ class PrepareDelivery
     validate_address!(destination_address)
 
     weight = @order.total_weight
-    truck = truck_selector!(weight)
+    truck = find_truk(weight)
 
     {
       truck:,
@@ -42,7 +42,7 @@ class PrepareDelivery
     raise NoAddress, "Нет адреса" unless destination_address.is_full?
   end
 
-  def truck_selector!(weight)
+  def find_truk(weight)
     truck = TRUCKS.keys.find { TRUCKS[_1] > weight }
     raise NoCar, "Нет подходящей машины" unless truck
     truck
