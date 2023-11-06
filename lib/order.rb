@@ -11,6 +11,6 @@ class Order
   end
 
   def total_weight
-    @products.sum { |product| product.weight }
+    @products.sum(&:weight)
   end
 end
