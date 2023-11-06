@@ -39,7 +39,11 @@ class PrepareDelivery
   end
 
   def validate_address!(destination_address)
-    raise NoAddress, "Нет адреса" unless destination_address.is_full?
+    address_validation_result = destination_address.is_full?
+
+    unless address_validation_result[:result]
+      raise InvalidAddressError, address_validation_result[:errors]
+    end
   end
 
   def find_truk(weight)

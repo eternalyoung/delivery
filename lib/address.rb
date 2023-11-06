@@ -12,6 +12,11 @@ class Address
   end
 
   def is_full?
-    !(city.empty? || street.empty? || house.empty?)
+    errors = []
+    errors << "No city data" unless @city
+    errors << "No street data" unless @street
+    errors << "No house data" unless @house
+
+    {result: errors.empty?, errors:}
   end
 end
